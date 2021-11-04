@@ -1,0 +1,49 @@
+@import './_buttons.less';
+@import './_checkboxes.less';
+@import './_forms.less';
+@import './_radios.less';
+
+//@color_primary: rgb(245, 73, 0);
+@color_primary: rgb(231, 109, 131);
+@color_secondary: rgb(253, 184, 51);
+@color_accent: rgb(72, 86, 150);
+
+:root {
+    --color-primary: @color_primary;
+    --color-primary-dark: darken(@color_primary, 15%);
+    --color-secondary: @color_secondary;
+    --color-secondary-dark: darken(@color_secondary, 15%);
+    --color-accent: @color_accent;
+    --color-accent-dark: darken(@color_accent, 15%);
+
+    --color-background: rgb(255, 255, 255);
+
+    --color-text-primary: rgb(0, 0, 0);
+    --color-text-secondary: rgb(255, 255, 255);
+
+    --color-shadow: rgba(0, 0, 0, 0.25);
+
+    --font-size-regular: 18px;
+    --font-size-heading-regular: 20px;
+    --font-size-heading-medium: 24px;
+    --font-size-heading-large: 28px;
+}
+
+html {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-regular);
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+a {
+    --color-link-hover: var(--color-text-primary);
+    text-decoration: none;
+
+    &:hover:not(.button) {
+        box-shadow: 0 0.15em 0 0 var(--color-link-hover);
+    }
+}
