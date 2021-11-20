@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
     declarations: [
-        HomeComponent
+        NotFoundComponent
     ],
     imports: [
         RouterModule.forChild(routes)
@@ -15,5 +15,5 @@ import { routes } from './routes';
     ],
     providers: [],
 })
-export class HomeModule {
+export class NotFoundModule {
 }

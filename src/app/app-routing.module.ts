@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { UserListComponent } from './user-list-component/user-list.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'users', component: UserListComponent },
-    { path: '**', component: NotFoundComponent }
+    { path: 'users', loadChildren: () => import('./user/user.module').then(m => m.UserModule)},
+    { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+    { path: '**', loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule) }
 ];
 
 @NgModule({
