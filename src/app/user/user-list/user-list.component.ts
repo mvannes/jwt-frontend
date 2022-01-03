@@ -10,18 +10,7 @@ export class UserListComponent implements OnInit {
     public _users: User[] = []
     public ready: boolean = false;
 
-    constructor(private userRepository: UserRepository) {
-        const user_michael = {
-            name: 'Michael van Nes',
-            username: 'mvannes'
-        };
-
-        const user_sabrina = {
-            name: 'Sabrina van der Linden',
-            username: 'svanderlinden'
-        };
-        this.userRepository.addUser(user_michael);
-        this.userRepository.addUser(user_sabrina);
+    public constructor(private userRepository: UserRepository) {
     }
 
     public async ngOnInit(): Promise<void> {

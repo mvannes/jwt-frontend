@@ -1,0 +1,7 @@
+<h1>Edit user</h1>
+<div class="container" *ngIf="ready">
+    <app-user-form [user]="user"></app-user-form>
+</div>
+<div class="loading" *ngIf="!ready">
+    <p>Loading in progress, your information will be there soon!</p>
+</div>

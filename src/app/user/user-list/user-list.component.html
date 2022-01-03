@@ -1,25 +1,26 @@
 <ng-container *ngIf="ready">
     <div class="user-list">
-        <table class="table table-primary">
-            <thead>
-                <tr>
-                    <td>Username</td>
-                    <td>Name</td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let user of users">
-                <td>{{ user.username }}</td>
-                <td>{{ user.name }}</td>
-                <td><div class="button-holder"><a href="" class="button button-transitioning button-secondary">Change</a><a href="" class="button button-transitioning button-secondary">Remove</a></div></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table table-primary table-cols-3">
+            <div class="tr">
+                <div class="td">Username</div>
+                <div class="td">Name</div>
+                <div class="td"></div>
+            </div>
+            <div class="tr" *ngFor="let user of users">
+                <div class="td">{{ user.username }}</div>
+                <div class="td">{{ user.name }}</div>
+                <div class="td">
+                    <div class="button-holder">
+                        <a [routerLink]="user.username" class="button button-transitioning button-secondary">Change</a>
+                        <a [routerLink]="[user.username, 'remove']" class="button button-transitioning button-secondary">Remove</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <button type="button" class="button button-primary">Add new user</button>
 </ng-container>
 
 <div class="loading" *ngIf="!ready">
-    <p>We zijn nog even aan het laden, maar de data komt zo bij je!</p>
+    <p>Loading in progress, your information will be there soon!</p>
 </div>

@@ -1,0 +1,12 @@
+<form class="form form-primary" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-holder">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" formControlName="username">
+    </div>
+    <div class="input-holder">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" formControlName="name">
+    </div>
+
+    <button class="button button-primary" type="submit">Save</button>
+</form>

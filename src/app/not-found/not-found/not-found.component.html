@@ -1,4 +1,6 @@
 <div class="not-found">
-    This page was not found, go back
-    <a  routerLink="/" class="button button-primary button-transitioning">home</a>
+    This page was not found, go
+    <a (click)="back()" class="button button-primary button-transitioning">
+        {{ shouldShowHomeReturn ? 'home' : 'back'}}
+    </a>
 </div>
