@@ -1,13 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User, UserRepository } from '../shared/user-repository';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
-declare type UserModel = {
-    username: string,
-    name: string,
-}
 @Component({
     selector: 'app-user-form',
     templateUrl: './user-form.component.html',
@@ -17,17 +12,13 @@ export class UserFormComponent implements OnInit {
     @Input('user')
     public user?: User;
 
-    private userModel: UserModel
     public form: FormGroup;
 
     public constructor(
         private userRepository: UserRepository,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private router: Router
     ) {
-        this.userModel = {
-            username: '',
-            name: ''
-        }
         this.form = this.fb.group({
             username: [''],
             name: [''],
@@ -36,14 +27,33 @@ export class UserFormComponent implements OnInit {
 
     public ngOnInit(): void {
         if (this.user) {
-            this.userModel.username = this.user.username;
-            this.userModel.name = this.user.name;
             this.form.get('username')?.disable();
         }
-        this.form.setValue(this.userModel);
+        this.form.setValue({
+            username: this.user?.username ?? '',
+            name: this.user?.name ?? '',
+        });
     }
 
-    public onSubmit() {
-        console.log(this.form.getRawValue());
+    public async onSubmit(): Promise<void> {
+        const value = this.form.getRawValue();
+        let user;
+        if (this.user) {
+            user = {
+                username: this.user.username,
+                name: value.name,
+            };
+        } else {
+            user = {
+                username: value.username,
+                name: value.name,
+            };
+        }
+
+        await this.userRepository.saveUser(user);
+
+        // TODO: Some form of notification here.
+
+        this.router.navigateByUrl('/users');
     }
 }

@@ -19,9 +19,9 @@ export class UserRepository {
             name: 'Sabrina van der Linden',
             username: 'svanderlinden'
         };
-        this.addUser(user_michael);
-        this.addUser(user_sabrina);
-        this.addUser({name: 'blieb', username: 'blob'})
+        this.saveUser(user_michael);
+        this.saveUser(user_sabrina);
+        this.saveUser({name: 'blieb', username: 'blob'})
     }
 
 
@@ -33,7 +33,14 @@ export class UserRepository {
         return this._users.find((u) => u.username === username);
     }
 
-    public async addUser(user: User): Promise<void> {
+    public async saveUser(user: User): Promise<void> {
+        for (let existingUser of this._users) {
+            if (existingUser.username === user.username) {
+                existingUser.name = user.name;
+                return;
+            }
+        }
+
         this._users.push(user);
     }
 }

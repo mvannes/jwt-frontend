@@ -7,6 +7,8 @@
         <label for="name">Full name</label>
         <input type="text" id="name" name="name" formControlName="name">
     </div>
-
-    <button class="button button-primary" type="submit">Save</button>
+    <div class="button-holder">
+        <button class="button button-primary" type="submit">Save</button>
+        <a class="button button-secondary button-transitioning" [routerLink]="'/users'">Cancel</a>
+    </div>
 </form>
