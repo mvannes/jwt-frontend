@@ -1,0 +1,89 @@
+.table {
+    --table-color: inherit;
+    --table-header-text-color: inherit;
+    --table-column-count: 1;
+    --table-border: var(--table-color) 1px solid;
+
+    border: var(--table-border);
+    width: 100%;
+
+    .header {
+        color: var(--table-header-text-color);
+        background: var(--table-color);
+
+        &.card-table-only {
+            display: none;
+        }
+    }
+
+    .tr {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(var(--table-column-count), 1fr);
+
+        .td {
+            padding: 0.5em;
+            word-break: break-all;
+            border: var(--table-border);
+        }
+    }
+}
+
+.table-cols-2 .tr {
+    --table-column-count: 2;
+}
+.table-cols-3 .tr {
+    --table-column-count: 3;
+}
+.table-cols-4 .tr {
+    --table-column-count: 4;
+}
+.table-cols-5 .tr {
+    --table-column-count: 5;
+}
+.table-cols-6 .tr {
+    --table-column-count: 6;
+}
+
+.table-primary {
+    --table-color: var(--color-primary);
+    --table-header-text-color: var(--color-text-secondary);
+}
+
+.table-secondary {
+    --table-color: var(--color-secondary);
+    --table-header-text-color: var(--color-text-secondary);
+}
+
+.table-accent {
+    --table-color: var(--color-accent);
+    --table-header-text-color: var(--color-text-secondary);
+}
+
+.card-table-mixin {
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    border: none;
+
+    .header.card-table-only {
+        display: inherit;
+    }
+
+    .tr {
+        grid-template-columns: none;
+        grid-template-rows: repeat(var(--table-column-count), 1fr);
+        border: var(--table-border);
+
+        margin-bottom: 1em;
+    }
+}
+
+.table.card-table {
+    .card-table-mixin();
+}
+@media only screen and (max-device-width: 1024px) {
+    .table {
+        .card-table-mixin();
+        grid-template-columns: 0.3fr 1fr;
+    }
+}

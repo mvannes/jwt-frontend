@@ -2,7 +2,7 @@
 @import './_checkboxes.less';
 @import './_forms.less';
 @import './_radios.less';
-@import './_table.less';
+@import '_tables.less';
 
 //@color_primary: rgb(245, 73, 0);
 @color_primary: rgb(231, 109, 131);
@@ -48,3 +48,13 @@ a {
         box-shadow: 0 0.15em 0 0 var(--color-link-hover);
     }
 }
+
+@media only screen and (max-device-width: 480px) {
+    :root {
+        --font-size-regular: 16px;
+        --font-size-heading-regular: 18px;
+        --font-size-heading-medium: 20px;
+        --font-size-heading-large: 24px;
+    }
+}
+@media only screen and (min-device-width: 480px) and (max-device-width: 1024px) {}
